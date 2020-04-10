@@ -14,4 +14,9 @@ class CategoryTest {
 	void isNotChickenTest() {
 		assertThat(Category.BEVERAGE.isChicken()).isFalse();
 	}
+
+	@Test
+	void toStringTest() {
+		assertThat(Category.CHICKEN.toString()).isEqualTo("[치킨]");
+	}
 }

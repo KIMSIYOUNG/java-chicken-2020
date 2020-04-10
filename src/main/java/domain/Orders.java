@@ -10,6 +10,7 @@ import exception.InvalidOrderCountException;
 public class Orders {
 	private static final int INIT = 0;
 	private static final int MAX_COUNT = 99;
+	private static final int NOT_ORDERED = 0;
 
 	private final Map<Menu, Integer> orders = new HashMap<>();
 
@@ -34,6 +35,12 @@ public class Orders {
 		return Money.wons(orders.entrySet().stream()
 			.mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
 			.sum());
+	}
+
+	public boolean isNotOrdered() {
+		return orders.values().stream()
+			.mapToInt(value -> value)
+			.sum() == NOT_ORDERED;
 	}
 
 	public void clear() {

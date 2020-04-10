@@ -17,4 +17,9 @@ class MoneyTest {
 	void longConstructorTest() {
 		assertThat(Money.wons(1500)).isInstanceOf(Money.class);
 	}
+
+	@Test
+	void toStringTest() {
+		assertThat(Money.wons(3000).toString()).isEqualTo("3000");
+	}
 }

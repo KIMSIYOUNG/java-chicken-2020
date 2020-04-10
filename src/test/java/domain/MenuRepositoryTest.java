@@ -43,4 +43,19 @@ class MenuRepositoryTest {
 			menus.add(new Menu(20, "카일치킨", Category.BEVERAGE, 1600));
 		}).isInstanceOf(UnsupportedOperationException.class);
 	}
+
+	@Test
+	@DisplayName("아이디를 기반으로 메뉴를 찾을 수 있는지 테스트합니다.")
+	void idTest() {
+		Menu menu = MenuRepository.findById("2");
+		assertThat(menu.isSameId("2")).isTrue();
+	}
+
+	@Test
+	@DisplayName("존재하지 않는 아이디는 예외를 반환합니다.")
+	void notExistIdTest() {
+		assertThatThrownBy(() -> MenuRepository.findById("30"))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageMatching("존재하지 않는 메뉴입니다.");
+	}
 }

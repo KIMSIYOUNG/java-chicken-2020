@@ -27,6 +27,10 @@ public class Table {
 		return this.id == id;
 	}
 
+	public boolean isNotOrdered() {
+		return orders.isNotOrdered();
+	}
+
 	public void clear() {
 		orders.clear();
 	}

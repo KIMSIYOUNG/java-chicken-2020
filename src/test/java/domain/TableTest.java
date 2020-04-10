@@ -24,4 +24,19 @@ class TableTest {
 		table.clear();
 		assertThat(table.calculateMoney()).isEqualTo(Money.wons(0));
 	}
+
+	@Test
+	void isSameIdByInt() {
+		assertThat(new Table(1).isSameId(1)).isTrue();
+	}
+
+	@Test
+	void isNotSameIdByInt() {
+		assertThat(new Table(1).isSameId(3)).isFalse();
+	}
+
+	@Test
+	void isSameIdByString() {
+		assertThat(new Table(3).isSameId("3")).isTrue();
+	}
 }
