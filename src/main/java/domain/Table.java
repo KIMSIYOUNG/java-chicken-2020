@@ -1,14 +1,28 @@
 package domain;
 
 public class Table {
-    private final int number;
+	private final Orders orders;
+	private final int number;
 
-    public Table(final int number) {
-        this.number = number;
-    }
+	public Table(final int number) {
+		this.orders = new Orders();
+		this.number = number;
+	}
 
-    @Override
-    public String toString() {
-        return Integer.toString(number);
-    }
+	public void addOrder(Menu menu, int count) {
+		orders.addOrder(menu, count);
+	}
+
+	public Money calculateMoney() {
+		return orders.calculateMoney();
+	}
+
+	public void clear() {
+		orders.clear();
+	}
+
+	@Override
+	public String toString() {
+		return Integer.toString(number);
+	}
 }

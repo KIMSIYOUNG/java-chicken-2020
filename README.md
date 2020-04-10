@@ -51,7 +51,7 @@
 - [x] Order
 - [x] Money
 - [x] Orders
-- Table
+- [x] Table
 - Payment
     - Cash
     - Card

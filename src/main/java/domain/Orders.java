@@ -33,4 +33,8 @@ public class Orders {
 			.mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
 			.sum());
 	}
+
+	public void clear() {
+		orders.clear();
+	}
 }
