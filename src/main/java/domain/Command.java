@@ -2,20 +2,20 @@ package domain;
 
 import java.util.Arrays;
 
-import model.Exit;
-import model.Pay;
-import model.PosModel;
-import model.Registration;
+import controller.ExitController;
+import controller.PaymentController;
+import controller.PosController;
+import controller.RegisterController;
 
 public enum Command {
-	REGISTER(1, new Registration()),
-	PAY(2, new Pay()),
-	EXIT(3, new Exit());
+	REGISTER(1, new RegisterController()),
+	PAY(2, new PaymentController()),
+	EXIT(3, new ExitController());
 
 	private final int id;
-	private final PosModel model;
+	private final PosController model;
 
-	Command(int id, PosModel model) {
+	Command(int id, PosController model) {
 		this.id = id;
 		this.model = model;
 	}

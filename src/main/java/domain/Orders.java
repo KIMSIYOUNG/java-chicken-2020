@@ -3,6 +3,7 @@ package domain;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import exception.InvalidOrderCountException;
 
@@ -41,5 +42,11 @@ public class Orders {
 
 	public Map<Menu, Integer> getOrders() {
 		return Collections.unmodifiableMap(orders);
+	}
+
+	public Map<Menu, Integer> getOrderedMenus() {
+		return orders.entrySet().stream()
+			.filter(entry -> entry.getValue() > 0)
+			.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 }

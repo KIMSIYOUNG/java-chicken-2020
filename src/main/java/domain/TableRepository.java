@@ -19,4 +19,18 @@ public class TableRepository {
 	public static List<Table> tables() {
 		return Collections.unmodifiableList(tables);
 	}
+
+	public static Table findById(int id) {
+		return tables.stream()
+			.filter(table -> table.isSameId(id))
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException("없는 테이블입니다. 테이블은 1~6번까지만 선택할 수 있습니다."));
+	}
+
+	public static Table findById(String id) {
+		return tables.stream()
+			.filter(table -> table.isSameId(id))
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException("없는 테이블입니다. 테이블은 1~6번까지만 선택할 수 있습니다."));
+	}
 }
