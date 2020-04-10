@@ -52,7 +52,7 @@
 - [x] Money
 - [x] Orders
 - [x] Table
-- Payment
+- [x] Payment
     - Cash
     - Card
 - Command
