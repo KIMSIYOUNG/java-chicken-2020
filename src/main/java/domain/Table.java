@@ -40,7 +40,7 @@ public class Table {
 	}
 
 	public Map<Menu, Integer> getRawOrders() {
-		return orders.getOrderedMenus();
+		return orders.OrderedMenus();
 	}
 
 	public int getId() {

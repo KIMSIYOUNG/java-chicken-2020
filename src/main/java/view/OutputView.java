@@ -83,7 +83,7 @@ public class OutputView {
 		rawOrders.forEach((key, value) ->
 			sb.append(key.getName() + " ")
 				.append(value.toString() + " ")
-				.append(key.getPrice()));
+				.append(key.getPrice() * value));
 	}
 
 	public static void printPaymentStart(Table table) {

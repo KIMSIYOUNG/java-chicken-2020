@@ -15,9 +15,7 @@ public class Orders {
 	private final Map<Menu, Integer> orders = new HashMap<>();
 
 	public Orders() {
-		for (Menu menu : MenuRepository.menus()) {
-			orders.put(menu, INIT);
-		}
+		clear();
 	}
 
 	public void addOrder(Menu menu, int count) {
@@ -44,16 +42,18 @@ public class Orders {
 	}
 
 	public void clear() {
-		orders.clear();
+		for (Menu menu : MenuRepository.menus()) {
+			orders.put(menu, INIT);
+		}
+	}
+
+	public Map<Menu, Integer> OrderedMenus() {
+		return orders.entrySet().stream()
+			.filter(entry -> entry.getValue() > 0)
+			.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 
 	public Map<Menu, Integer> getOrders() {
 		return Collections.unmodifiableMap(orders);
-	}
-
-	public Map<Menu, Integer> getOrderedMenus() {
-		return orders.entrySet().stream()
-			.filter(entry -> entry.getValue() > 0)
-			.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 }
