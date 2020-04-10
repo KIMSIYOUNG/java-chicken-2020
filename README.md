@@ -60,7 +60,7 @@
 - [x] PaymentType
     - [x] Cash
     - [x] Card
-- Discount
+- [x] Discount
     - [x] 치킨 10마리당 10_000원씩 할인 -> Payment
     - [x] 현금 할인 -> payment
 - Command
