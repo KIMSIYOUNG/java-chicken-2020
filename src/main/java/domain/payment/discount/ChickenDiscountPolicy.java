@@ -1,4 +1,4 @@
-package domain.payment;
+package domain.payment.discount;
 
 import java.util.Map;
 

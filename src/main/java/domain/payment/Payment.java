@@ -2,6 +2,7 @@ package domain.payment;
 
 import domain.Money;
 import domain.Table;
+import domain.payment.discount.DiscountPolicy;
 
 public class Payment {
 	private final DiscountPolicy discountPolicy;

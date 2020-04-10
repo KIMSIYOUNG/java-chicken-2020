@@ -1,4 +1,4 @@
-package domain.payment;
+package domain.payment.discount;
 
 import domain.Money;
 import domain.Orders;

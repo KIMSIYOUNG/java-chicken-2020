@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import domain.MenuRepository;
 import domain.Money;
 import domain.Table;
+import domain.payment.discount.ChickenDiscountPolicy;
 
 class PaymentTest {
 	@Test

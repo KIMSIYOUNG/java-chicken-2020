@@ -9,6 +9,7 @@ import domain.Menu;
 import domain.MenuRepository;
 import domain.Money;
 import domain.Orders;
+import domain.payment.discount.ChickenDiscountPolicy;
 
 class ChickenDiscountPolicyTest {
 	private final Menu firstChicken = MenuRepository.menus().get(0);

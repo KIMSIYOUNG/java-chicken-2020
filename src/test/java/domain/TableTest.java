@@ -17,6 +17,13 @@ class TableTest {
 	}
 
 	@Test
+	@DisplayName("주문되지 않은 경우 True를 정상반환합니다.")
+	void isNotOrdered() {
+		Table table = new Table(1);
+		assertThat(table.isNotOrdered()).isTrue();
+	}
+
+	@Test
 	@DisplayName("테이블에 주문된 주문 목록을 초기화 할 수 있다.")
 	void clear() {
 		Table table = new Table(7);
