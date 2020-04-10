@@ -32,6 +32,14 @@ class OrdersTest {
 	}
 
 	@Test
+	@DisplayName("주문된 치킨의 갯수를 정확하게 반환하는지 테스트")
+	void orderedChickenTest() {
+		Orders orders = new Orders();
+		orders.addOrder(MenuRepository.menus().get(0), 30);
+		assertThat(orders.orderedChickenCount()).isEqualTo(30);
+	}
+
+	@Test
 	@DisplayName("주문한 상품에 대한 가격을 정확하게 반환한다.")
 	void calculateTest() {
 		Orders orders = new Orders();

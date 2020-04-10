@@ -1,7 +1,5 @@
 package domain.payment.discount;
 
-import java.util.Map;
-
 import domain.Money;
 import domain.Orders;
 
@@ -11,10 +9,7 @@ public class ChickenDiscountPolicy implements DiscountPolicy {
 
 	@Override
 	public Money getDiscountMoney(Orders orders) {
-		int chickenAmount = orders.getOrders().entrySet().stream()
-			.filter(entry -> entry.getKey().isChicken())
-			.mapToInt(Map.Entry::getValue)
-			.sum();
+		int chickenAmount = orders.orderedChickenCount();
 		return Money.wons((chickenAmount / PER_CHICKEN) * DISCOUNT_MONEY);
 	}
 }

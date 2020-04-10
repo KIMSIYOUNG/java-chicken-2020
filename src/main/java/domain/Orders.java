@@ -41,16 +41,23 @@ public class Orders {
 			.sum() == NOT_ORDERED;
 	}
 
-	public void clear() {
-		for (Menu menu : MenuRepository.menus()) {
-			orders.put(menu, INIT);
-		}
-	}
-
 	public Map<Menu, Integer> OrderedMenus() {
 		return orders.entrySet().stream()
 			.filter(entry -> entry.getValue() > 0)
 			.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+	}
+
+	public int orderedChickenCount() {
+		return orders.entrySet().stream()
+			.filter(entry -> entry.getKey().isChicken())
+			.mapToInt(Map.Entry::getValue)
+			.sum();
+	}
+
+	public void clear() {
+		for (Menu menu : MenuRepository.menus()) {
+			orders.put(menu, INIT);
+		}
 	}
 
 	public Map<Menu, Integer> getOrders() {

@@ -24,13 +24,13 @@ public class OutputView {
 	}
 
 	private static void printBottom(List<Table> tables) {
-		for (Table table : tables) {
+		tables.forEach(table -> {
 			if (table.isNotOrdered()) {
 				System.out.print(BOTTOM_LINE);
-				continue;
+				return;
 			}
 			System.out.print(BOTTOM_LINE_WITH_ORDER);
-		}
+		});
 	}
 
 	public static void printMenus(final List<Menu> menus) {
