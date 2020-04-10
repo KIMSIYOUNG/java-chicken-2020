@@ -1,54 +1,48 @@
 package domain.payment;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import domain.MenuRepository;
 import domain.Money;
+import domain.Table;
 
 class PaymentTest {
 	@Test
-	@DisplayName("String 1이 입력된 경우 Card객체를 리턴한다.")
-	void ofCardStringTest() {
-		assertThat(Payment.of("1")).isEqualTo(Payment.CARD);
+	@DisplayName("치킨 10마리 이상과, 현금으로 결제하는 경우 계산을 올바르게 수행")
+	void over10ChickenAndCash() {
+		Table table = new Table(7);
+		table.addOrder(MenuRepository.menus().get(0), 30);
+		Payment payment = new Payment(new ChickenDiscountPolicy(), PaymentType.CASH, table);
+		assertThat(payment.calculate()).isEqualTo(Money.wons(String.format("%.1f", 427500.00)));
 	}
 
 	@Test
-	@DisplayName("Integer 1이 입력된 경우 Card객체를 리턴한다.")
-	void ofCardIntegerTest() {
-		assertThat(Payment.of(1)).isEqualTo(Payment.CARD);
+	@DisplayName("치킨 10마리 이하와, 현금으로 결제하는 경우 계산을 올바르게 수행")
+	void less10ChickenAndCash() {
+		Table table = new Table(7);
+		table.addOrder(MenuRepository.menus().get(0), 5);
+		Payment payment = new Payment(new ChickenDiscountPolicy(), PaymentType.CASH, table);
+		assertThat(payment.calculate()).isEqualTo(Money.wons(76000.0));
 	}
 
 	@Test
-	@DisplayName("String 2이 입력된 경우 Cash객체를 리턴한다.")
-	void ofCashStringTest() {
-		assertThat(Payment.of("2")).isEqualTo(Payment.CASH);
+	@DisplayName("치킨 10마리 이상와, 카드으로 결제하는 경우 계산을 올바르게 수행")
+	void over10ChickenAndCard() {
+		Table table = new Table(7);
+		table.addOrder(MenuRepository.menus().get(0), 10);
+		Payment payment = new Payment(new ChickenDiscountPolicy(), PaymentType.CARD, table);
+		assertThat(payment.calculate()).isEqualTo(Money.wons(150000.0));
 	}
 
 	@Test
-	@DisplayName("Integer 2이 입력된 경우 Cash객체를 리턴한다.")
-	void ofCashIntegerTest() {
-		assertThat(Payment.of(2)).isEqualTo(Payment.CASH);
-	}
-
-	@Test
-	@DisplayName("1또는 2가 입력되지 않는 경우 예외를 반환한다.")
-	void IllegalInputException() {
-		assertThatThrownBy(() -> {
-			Payment.of(3);
-		}).isInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	@DisplayName("현금할인을 정상적으로 수행한다.")
-	void calculateCashTest() {
-		assertThat(Payment.CASH.calculate(1000)).isEqualTo(Money.wons(950.0));
-	}
-
-	@Test
-	@DisplayName("카드의 경우 할인을 제공하지 않는다.")
-	void calculateCardTest() {
-		assertThat(Payment.CARD.calculate(1000)).isEqualTo(Money.wons(1000.0));
+	@DisplayName("치킨 10마리 이하와, 카드으로 결제하는 경우 계산을 올바르게 수행")
+	void less10ChickenAndCard() {
+		Table table = new Table(7);
+		table.addOrder(MenuRepository.menus().get(0), 5);
+		Payment payment = new Payment(new ChickenDiscountPolicy(), PaymentType.CARD, table);
+		assertThat(payment.calculate()).isEqualTo(Money.wons(80000.0));
 	}
 }

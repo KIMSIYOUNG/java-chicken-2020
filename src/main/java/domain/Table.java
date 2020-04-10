@@ -21,6 +21,10 @@ public class Table {
 		orders.clear();
 	}
 
+	public Orders getOrders() {
+		return orders;
+	}
+
 	@Override
 	public String toString() {
 		return Integer.toString(number);

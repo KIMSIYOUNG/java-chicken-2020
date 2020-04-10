@@ -1,33 +1,22 @@
 package domain.payment;
 
-import java.util.Arrays;
-
 import domain.Money;
+import domain.Table;
 
-public enum Payment {
-	CARD(1, 1),
-	CASH(2, 0.95);
+public class Payment {
+	private final DiscountPolicy discountPolicy;
+	private final PaymentType paymentType;
+	private final Table table;
 
-	private final int id;
-	private final double discountRate;
-
-	Payment(int id, double discountRate) {
-		this.id = id;
-		this.discountRate = discountRate;
+	public Payment(DiscountPolicy discountPolicy, PaymentType paymentType, Table table) {
+		this.discountPolicy = discountPolicy;
+		this.paymentType = paymentType;
+		this.table = table;
 	}
 
-	public static Payment of(String input) {
-		return of(Integer.parseInt(input));
-	}
-
-	public static Payment of(int input) {
-		return Arrays.stream(values())
-			.filter(value -> value.id == input)
-			.findFirst()
-			.orElseThrow(IllegalArgumentException::new);
-	}
-
-	public Money calculate(long input) {
-		return Money.wons(this.discountRate * input);
+	public Money calculate() {
+		Money raw = table.calculateMoney();
+		Money discountMo = discountPolicy.getDiscountMoney(table.getOrders());
+		return paymentType.calculate(raw.minus(discountMo));
 	}
 }
