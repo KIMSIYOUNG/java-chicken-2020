@@ -18,5 +18,6 @@ public class PaymentController implements PosController {
 		PaymentType paymentType = PaymentType.of(InputView.inputPaymentId());
 		Payment payment = new Payment(new ChickenDiscountPolicy(), paymentType, table);
 		OutputView.printTotalMoney(payment.calculate());
+		table.clear();
 	}
 }
