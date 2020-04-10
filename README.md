@@ -44,10 +44,10 @@
 
 ## TDD 순서
 
-- Category 
-    - Chicken
-    - Beverage
-- Menu & MenuRepository
+- [x] Category 
+    - [x] Chicken
+    - [x] Beverage
+- [x] Menu & MenuRepository
 - Order
 - Table
 - Payment
