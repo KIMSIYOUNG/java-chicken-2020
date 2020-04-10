@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,5 +37,9 @@ public class Orders {
 
 	public void clear() {
 		orders.clear();
+	}
+
+	public Map<Menu, Integer> getOrders() {
+		return Collections.unmodifiableMap(orders);
 	}
 }
