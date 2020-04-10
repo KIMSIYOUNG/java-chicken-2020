@@ -48,7 +48,9 @@
     - [x] Chicken
     - [x] Beverage
 - [x] Menu & MenuRepository
-- Order
+- [x] Order
+- [x] Money
+- [x] Orders
 - Table
 - Payment
     - Cash
